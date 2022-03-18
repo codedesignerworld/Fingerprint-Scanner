@@ -1,0 +1,101 @@
+:root{
+  --bgColor: #111;
+  --scannerColor: #3fefef;
+  --imageColor: 130deg;
+}
+* {
+    margin:0;
+    padding:0;
+    font-family:consolas;
+}
+
+body {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background: var(--bgColor);
+}
+
+.scan {
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.scan .fingerprint {
+    position:relative;
+    width:300px;
+    height:230px;
+    background:url(https://www.pngall.com/wp-content/uploads/2016/06/Fingerprint-Free-Download-PNG.png);
+    background-repeat: no-repeat;
+    background-size:300px;
+}
+
+.scan .fingerprint::before {
+    content: '';
+    position:absolute;
+    top:0;
+    left:0;
+    width:300px;
+    height:230px;
+    background:url(https://www.pngall.com/wp-content/uploads/2016/06/Fingerprint-Free-Download-PNG.png);
+    filter: invert(100%) sepia(60%) saturate(3000%) hue-rotate(var(--imageColor)) brightness(95%) contrast(80%);
+    background-size:300px;
+    animation:animate 4s ease-in-out infinite;    
+}
+
+
+@keyframes animate {
+    0%, 100% {
+        height:0%;
+    }
+    
+    50% {
+        height:100%;
+    }
+}
+
+.scan .fingerprint::after {
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:8px;
+    background: var(--scannerColor);
+    border-radius:8px;
+    filter: drop-shadow(0 0 20px #3fefef) drop-shadow(0 0 60px #3fefef);
+    animation:moveLine 4s ease-in-out infinite;
+}
+
+@keyframes moveLine {
+    0%, 100% {
+        top:0%;
+    }
+    
+    50% {
+        top:100%;
+    }
+}
+
+.scan h3 {
+    text-transform:uppercase;
+    font-size:2em;
+    letter-spacing:2px;
+    margin-top:20px;
+    color: var(--scannerColor);   
+    filter:drop-shadow(0 0 20px var(--scannerColor)) drop-shadow(0 0 60px var(--scannerColor));
+    animation:animate_text 0.5s steps(1) infinite;
+}
+
+@keyframes animate_text {
+    0%, 100% {
+        opacity:0;
+    }
+    
+    50% {
+        opacity:1;
+    }
+}
